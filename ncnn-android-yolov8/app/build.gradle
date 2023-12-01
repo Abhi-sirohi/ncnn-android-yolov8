@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "29.0.2"
+//    buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId "com.tencent.yolov8ncnn"
@@ -10,15 +10,25 @@ android {
 
         minSdkVersion 24
     }
+    tasks.register('wrapper', Wrapper) {
+        gradleVersion = '7.2'
+    }
+    tasks.register('prepareKotlinBuildScriptModel') {
+
+    }
+    signingConfigs{
+
+    }
 
     externalNativeBuild {
         cmake {
-            version "3.10.2"
+            version "3.22.1"
             path file('src/main/jni/CMakeLists.txt')
         }
     }
 
     dependencies {
-        implementation 'com.android.support:support-v4:24.0.0'
+        implementation 'com.android.support:support-v4:24.2.1'
     }
+    ndkVersion '26.1.10909125'
 }
